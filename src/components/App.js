@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
 // import components
 import Header from './Header'
@@ -29,7 +29,13 @@ const App = () => {
     }
   ])
 
+  const [highScore, setHighScore] = useState()
   const nextPlayerId = useRef(5)
+
+  useEffect(() => {
+    const scores = players.map((player) => player.score)
+    setHighScore(Math.max(...scores))
+  }, [players])
 
   const handleRemovePlayer = (id) => {
     setPlayers((prevPlayers) => prevPlayers.filter((p) => p.id !== id))
@@ -56,8 +62,6 @@ const App = () => {
       { name, score: 0, id: nextPlayerId.current++ }
     ])
   }
-
-  const highScore = Math.max(...players.map((player) => player.score), 0)
 
   return (
     <div className="scoreboard">
