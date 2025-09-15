@@ -57,6 +57,8 @@ const App = () => {
     ])
   }
 
+  const highScore = Math.max(...players.map((player) => player.score), 0)
+
   return (
     <div className="scoreboard">
       <Header players={players} />
@@ -68,6 +70,7 @@ const App = () => {
           score={player.score}
           id={player.id}
           key={player.id.toString()}
+          highScore={highScore}
           removePlayer={handleRemovePlayer}
           changeScore={handleScoreChange}
         />
