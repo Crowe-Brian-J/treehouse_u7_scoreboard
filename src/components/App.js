@@ -31,8 +31,19 @@ const App = () => {
     setPlayers((prevPlayers) => prevPlayers.filter((p) => p.id !== id))
   }
 
-  const handleScoreChange = (delta) => {
-    console.log(delta)
+  const handleScoreChange = (id, delta) => {
+    setPlayers((prevPlayers) =>
+      prevPlayers.map((player) => {
+        if (player.id === id) {
+          return {
+            name: player.name,
+            score: player.score + delta,
+            id: player.id
+          }
+        }
+        return player
+      })
+    )
   }
 
   return (
