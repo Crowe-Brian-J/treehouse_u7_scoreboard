@@ -1,4 +1,5 @@
 import React, { memo } from 'react'
+import PropTypes from 'prop-types'
 
 // import counter component
 import Counter from './Counter'
@@ -29,6 +30,14 @@ const Player = (props) => {
 //use to eliminate wasted renders as second argument in memo
 const playerPropsAreEqual = (prevProps, nextProps) => {
   return prevProps.score === nextProps.score
+}
+
+Player.propTypes = {
+  name: PropTypes.string.isRequired,
+  score: PropTypes.number.isRequired,
+  id: PropTypes.number,
+  removePlayer: PropTypes.func,
+  changeScore: PropTypes.func
 }
 
 export default memo(Player, playerPropsAreEqual)

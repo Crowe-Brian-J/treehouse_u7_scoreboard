@@ -19,4 +19,9 @@ Header.propTypes = {
   title: PropTypes.string
 }
 
+// Use defaultProps, part of PropTypes, to set default values in case you forget to pass them
+Header.defaultProps = {
+  title: 'Scoreboard'
+}
+
 export default Header
